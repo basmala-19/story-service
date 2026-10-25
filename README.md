@@ -40,7 +40,7 @@ A stage passes when no blocker or major check failed. Minors are returned in the
 
 ### Weights
 
-The rubric (`src/story_service/pipeline/prompts/s2_weight_rubric.md`) is shared by both prompts:
+The rubric (`src/story_service/pipeline/stages/s2_concepts/prompts/s2_weight_rubric.md`) is shared by both prompts:
 
 - **must**: the student cannot apply the topic without it. Later stages require every `must` concept to be shown in the story plot. Between 1 and 4 per topic.
 - **important**: needed for fuller or more correct understanding, but the basic task still works without it.
@@ -54,12 +54,12 @@ src/story_service/
   pipeline/
     validation.py                  Check, ValidationReport (shared)
     errors.py                      StageExhaustedError, InvalidLLMOutput (shared)
-    prompts/                       s2_concept_extractor.md, s2_concept_reviewer.md, s2_weight_rubric.md
     stages/s2_concepts/
       models.py                    domain models + input adapter (no I/O)
       rules.py                     pure validation rules and reviewer verdict
       ports.py                     LLMClient and StageRecorder interfaces
-      prompting.py                 prompt files + message building + injection hygiene
+      prompting.py                 prompt loading + message building + injection hygiene
+      prompts/                     extractor, reviewer, and shared weight rubric
       use_case.py                  attempt loop, retries, input hash
       __init__.py                  public API: run(), run_detailed()
   providers/                       OPTIONAL: Gemini adapter (see below)

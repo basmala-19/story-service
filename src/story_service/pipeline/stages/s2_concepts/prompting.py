@@ -1,6 +1,6 @@
 """Prompt assembly for S2.
 
-System prompts are files in ``pipeline/prompts``. Their numeric limits are
+System prompts are files in this stage's ``prompts`` directory. Their numeric limits are
 injected from ``rules.Limits`` so the prompt and the validator cannot drift.
 Lesson text is always delimited and treated as data (spec 5.0, untrusted input).
 """
@@ -18,7 +18,7 @@ from typing import Any
 from .models import ConceptExtractionInput, ConceptsArtifact
 from .rules import LIMITS, Limits
 
-_PROMPTS_DIR = Path(__file__).resolve().parents[2] / "prompts"
+_PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 _EXTRACTOR_FILE = "s2_concept_extractor.md"
 _REVIEWER_FILE = "s2_concept_reviewer.md"
 _RUBRIC_FILE = "s2_weight_rubric.md"
